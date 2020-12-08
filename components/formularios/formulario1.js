@@ -1,6 +1,6 @@
 import React from "react";
 
-function formulario() {
+export default function formulario1() {
   return (
     <div className="container-x pt-16">
       <div className="text-center mt-24">
@@ -64,4 +64,3 @@ function formulario() {
   );
 }
 
-export default formulario;
