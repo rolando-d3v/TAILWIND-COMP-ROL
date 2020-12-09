@@ -1,20 +1,29 @@
 import React from "react";
 import Link from "next/link";
 import { TiDeleteOutline } from "react-icons/ti";
+import * as FaIcons from "react-icons/fa";
+
 
 export default function NavigationMovil(props) {
-  const { showSidebarPhone, sidebarPhone, dropList1, dropList2 } = props;
+  const {
+    showSidebarPhone,
+    sidebarPhone,
+    dropList1,
+    dropList2,
+    cambioDark,
+    toggle,
+  } = props;
 
   return (
-    <section className="absolute top-0 inset-x-0  transition transform origin-top-right md:hidden">
+    <section className="absolute top-0 inset-x-0  transition transform origin-top-right md:hidden ">
       <div
         className={`${
           sidebarPhone ? "flex-col" : "hidden"
         } "rounded-lg shadow-lg"`}
       >
-        <div className="rounded-lg shadow-xs bg-white divide-y-2 divide-gray-50">
-          <div className="pt-2 pb-6 px-4 space-y-6">
-            <div className="flex items-center justify-between">
+        <div className="rounded-lg shadow-lg bg-white divide-y-2 divide-gray-50 dark:bg-azul-800 transition duration-700">
+          <div className="pt-2 pb-6 px-4 space-y-6 ">
+            <div className="flex items-center justify-between ">
               <a className="flex items-center">
                 <img
                   className="h-8 w-auto mr-1"
@@ -39,10 +48,10 @@ export default function NavigationMovil(props) {
               <nav className="grid gap-y-8">
                 {dropList1.map((ev) => (
                   <Link href={ev.url} key={ev.id}>
-                    <a className="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
+                    <a className="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150 ">
                       {ev.icon}
                       <div className="space-y-1">
-                        <p className="text-base leading-6 font-medium text-gray-900">
+                        <p className="text-base leading-6 font-medium text-gray-500 ">
                           {ev.name}
                         </p>
                       </div>
@@ -56,13 +65,13 @@ export default function NavigationMovil(props) {
             <div className="grid grid-cols-2 gap-y-4 gap-x-8">
               <a
                 href="#"
-                className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 "
+                className="text-base leading-6 font-medium text-gray-600 hover:text-gray-700 "
               >
                 Pricing
               </a>
               <a
                 href="#"
-                className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 "
+                className="text-base leading-6 font-medium text-gray-600 hover:text-gray-700 "
               >
                 Docs
               </a>
@@ -71,7 +80,7 @@ export default function NavigationMovil(props) {
                   <a className="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 ">
                     {ev.icon}
                     <div className="space-y-1">
-                      <p className="text-base leading-6 font-medium text-gray-900">
+                      <p className="text-base leading-6 font-medium text-gray-500">
                         {ev.name}
                       </p>
                     </div>
@@ -88,11 +97,26 @@ export default function NavigationMovil(props) {
                   Sign up
                 </a>
               </span>
-              <div className='flex items-center justify-around text-center ' >
-                <span className="text-center text-base leading-6 font-medium text-gray-500">
-                  Existing customer?
-                </span>
-                <a href="#" className="text-indigo-600 font-bold hover:text-indigo-500">
+              <div className="flex items-center justify-around text-center ">
+                <section className="w-28 relative flex items-center ">
+                  <FaIcons.FaSun className="dark:text-gray-400 text-yellow-400 absolute left-0" />
+                  <div
+                    className="w-14 h-7 bg-green-300  dark:bg-blue-500 rounded-2xl flex items-center mx-auto shadow-md "
+                    onClick={() => cambioDark()}
+                  >
+                    <div
+                      className={`${
+                        toggle ? "translate-x-8 " : ""
+                      } bg-gray-50  inline-block h-5 w-5 rounded-full transform  duration-300 shadow-lg`}
+                      style={{ margin: "0 0.08rem" }}
+                    ></div>
+                  </div>
+                  <FaIcons.FaMoon className="dark:text-blue-600 text-gray-400 absolute right-0" />
+                </section>
+                <a
+                  href="#"
+                  className="text-indigo-600 font-bold hover:text-indigo-500"
+                >
                   Sign in
                 </a>
               </div>

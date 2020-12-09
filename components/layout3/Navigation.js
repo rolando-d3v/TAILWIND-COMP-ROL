@@ -3,11 +3,17 @@ import Link from "next/link";
 import NavigationMovil from "./NavigationMovil";
 import { dropList1, dropList2 } from "./data";
 import { FaChevronDown, FaBars, FaPhone, FaPlayCircle } from "react-icons/fa";
+import * as FaIcons from "react-icons/fa";
+import { useDarkMode } from "./hooks/useDarkMode";
 
 export default function Home() {
   const [drop, setDrop] = useState(false);
   const [drop2, setDrop2] = useState(false);
   const [sidebarPhone, setSidebarPhone] = useState(false);
+
+  const { cambioDark, toggle } = useDarkMode();
+
+  console.log(toggle);
 
   const showSidebarPhone = () => {
     setSidebarPhone(!sidebarPhone);
@@ -22,9 +28,9 @@ export default function Home() {
   };
 
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-white dark:bg-azul-800 transform duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center border-b-2 border-gray-100 py-4 md:justify-start md:space-x-10">
+        <div className="flex justify-between items-center border-b-2 border-gray-100 dark:border-indigo-500 py-4 md:justify-start md:space-x-10">
           <div className="lg:w-0 lg:flex-1">
             <a href="/" className="flex items-center">
               <img
@@ -47,7 +53,7 @@ export default function Home() {
             </button>
           </div>
 
-          <nav className="hidden md:flex space-x-10">
+          <nav className="hidden md:flex space-x-6 lg:space-x-10">
             <div className="relative">
               <button
                 type="button"
@@ -182,6 +188,21 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <section className="w-28 relative flex items-center ">
+              <FaIcons.FaSun className="dark:text-gray-400 text-yellow-400 absolute left-0" />
+              <div
+                className="w-14 h-7 bg-green-300  dark:bg-blue-500 rounded-2xl flex items-center mx-auto shadow-md "
+                onClick={() => cambioDark()}
+              >
+                <div
+                  className={`${
+                    toggle ? "translate-x-8 " : ""
+                  } bg-gray-50  inline-block h-5 w-5 rounded-full transform  duration-300 shadow-lg`}
+                  style={{ margin: "0 0.08rem" }}
+                ></div>
+              </div>
+              <FaIcons.FaMoon className="dark:text-blue-600 text-gray-400 absolute right-0" />
+            </section>
           </nav>
           <div className="hidden md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0">
             <a
@@ -207,6 +228,8 @@ export default function Home() {
         sidebarPhone={sidebarPhone}
         dropList1={dropList1}
         dropList2={dropList2}
+        toggle={toggle}
+        cambioDark={cambioDark}
       />
     </div>
   );
