@@ -20,11 +20,14 @@ module.exports = {
         emerald: colors.emerald,
         lime: colors.lime,
         amber: colors.amber,
+        green: colors.green,
+        red: colors.red,
 
         warmGray: colors.warmGray,
         trueGray: colors.trueGray,
         coolGray: colors.coolGray,
         blueGray: colors.blueGray,
+        gray: colors.gray,
   
         "verde-x": {
           50: "#f3fdfd",
